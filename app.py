@@ -8,8 +8,7 @@ st.set_page_config(
     page_icon="🏠",
     layout="centered"
 )
-
-st.title("🏠 Isha Interiors — Marketing Generator")
+st.title("🏠 Isha Interiors")
 st.write("Generate social media posts, local hashtags, and high-resolution design images instantly.")
 
 # Fetch API Key from Streamlit Secrets or Environment
