@@ -100,13 +100,3 @@ if st.button("🚀 Generate Post & AI Image"):
                         
                 except Exception as img_err:
                     st.info("Image generation fallback: Copy Section 3 prompt into Midjourney or Canva if Imagen access is limited.")
-
-4. Scroll to the bottom and click **Commit changes**.
-
----
-
-### What Will Update Automatically
-
-1. **Language Switcher:** Allows choosing **English**, **Telugu**, or **Hindi** for local Hyderabad audiences.
-2. **Direct Image Output:** Creates and displays a high-resolution 1:1 interior image right inside the app.
-3. **Streamlined Mobile Copying:** Mobile browsers will now show a built-in text selection handle over each section for quick copying into Instagram or WhatsApp.
