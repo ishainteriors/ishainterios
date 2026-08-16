@@ -18,14 +18,38 @@ api_key = st.secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
 # Input Controls
 language = st.radio("Select Output Language", ["English", "Telugu", "Hindi"], horizontal=True)
 
+# Expanded Categorized Project Options
 project_type = st.selectbox(
     "Project Type",
     [
-        "3BHK Modern Apartment Interior",
+        "--- 🏠 RESIDENTIAL ---",
+        "1BHK Apartment Interior",
         "2BHK Apartment Interior",
-        "Luxury Villa Interior",
-        "Modular Kitchen Renovation",
-        "Commercial Office",
+        "3BHK Apartment Interior",
+        "4BHK Apartment Interior",
+        "Luxury Apartment Interior",
+        "Villa Interior",
+        "Duplex House Interior",
+        "Independent House Interior",
+        "--- 🍳 KITCHEN & ROOMS ---",
+        "Modular Kitchen",
+        "Living Room Interior",
+        "Master Bedroom Interior",
+        "Kids Bedroom Interior",
+        "Wardrobe & Storage",
+        "--- 🏢 COMMERCIAL ---",
+        "Corporate Office Interior",
+        "Retail Store Interior",
+        "Showroom Interior",
+        "Restaurant Interior",
+        "Clinic Interior",
+        "Salon & Spa Interior",
+        "--- 💡 OTHER SERVICES ---",
+        "Home Renovation",
+        "Commercial Renovation",
+        "Turnkey Interior Project",
+        "Interior Design Consultation",
+        "Not Sure — Help Me Choose"
     ],
 )
 
@@ -41,7 +65,9 @@ key_features = st.text_area(
 )
 
 if st.button("🚀 Generate Post & AI Image"):
-    if not api_key:
+    if project_type.startswith("---"):
+        st.warning("Please select a valid project type instead of a header category.")
+    elif not api_key:
         st.error("API Key is missing. Please configure GEMINI_API_KEY in Streamlit Secrets.")
     else:
         client = genai.Client(api_key=api_key)
