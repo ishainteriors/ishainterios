@@ -8,10 +8,11 @@ st.set_page_config(
     page_icon="🏠",
     layout="centered"
 )
+
 st.title("🏠 Isha Interiors")
 st.write("Generate social media posts, local hashtags, and high-resolution design images instantly.")
 
-# Fetch API Key from Streamlit Secrets or Environment
+# Fetch API Key from Streamlit Secrets or Environment Variables
 api_key = st.secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
 
 # Input Controls
@@ -108,11 +109,11 @@ if st.button("🚀 Generate Post & AI Image"):
                 SECTION 3 — AI IMAGE GENERATION PROMPT (In English: Photorealistic architectural interior photo, no people).
                 """
                 
-                text_response = client.interactions.create(
-                    model="gemini-3.6-flash",
-                    input=text_prompt
+                text_response = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=text_prompt
                 )
-                generated_text = text_response.output_text
+                generated_text = text_response.text
                 
                 st.success("Marketing Content Ready!")
                 st.markdown(generated_text)
@@ -141,4 +142,4 @@ if st.button("🚀 Generate Post & AI Image"):
                         st.image(generated_image.image.image_bytes, caption=f"{project_type} — {locality}")
                         
                 except Exception as img_err:
-                    st.info("Image generation fallback: Copy Section 3 prompt into Midjourney or Canva if Imagen access is limited.")
+                    st.info(f"Image generation fallback: {img_err}\nCopy Section 3 prompt into Midjourney or Canva if Imagen access is limited.")
