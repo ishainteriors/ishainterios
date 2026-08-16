@@ -53,7 +53,24 @@ project_type = st.selectbox(
     ],
 )
 
-locality = st.text_input("Locality in Hyderabad", value="Gachibowli")
+# Complete Hyderabad & Nearby Locations
+localities_list = [
+    "Gachibowli", "HITEC City", "Madhapur", "Financial District", "Kondapur",
+    "Nanakramguda", "Raidurg", "Kokapet", "Banjara Hills", "Jubilee Hills",
+    "Narsingi", "Manikonda", "Begumpet", "Somajiguda", "Punjagutta",
+    "Ameerpet", "Kukatpally", "Miyapur", "Uppal", "Secunderabad",
+    "Khairatabad", "Mehdipatnam", "Masab Tank", "Abids", "Himayatnagar",
+    "Koti", "Dilsukhnagar", "LB Nagar", "Nagole", "Kompally", "Suchitra",
+    "Alwal", "Tarnaka", "Nacharam", "Habsiguda", "ECIL", "Bowenpally",
+    "Shamshabad", "Khammam", "Warangal", "Other (Type Custom Location)"
+]
+
+selected_locality = st.selectbox("Locality / Area", localities_list)
+
+if selected_locality == "Other (Type Custom Location)":
+    locality = st.text_input("Enter Custom Location Name", value="Hyderabad")
+else:
+    locality = selected_locality
 
 target_budget = st.selectbox(
     "Target Budget", ["Mid to Premium", "High-End Luxury", "Budget-Friendly"]
@@ -88,7 +105,7 @@ if st.button("🚀 Generate Post & AI Image"):
                 Generate content in {language}.
                 Return ONLY 3 labeled sections:
                 SECTION 1 — SOCIAL MEDIA CAPTION (Engaging tone, highlight features, call to action to contact Isha Interiors for a free site visit).
-                SECTION 2 — HASHTAGS (12-15 relevant tags including #IshaInteriors, Hyderabad, and {locality}).
+                SECTION 2 — HASHTAGS (12-15 relevant tags including #IshaInteriors, Hyderabad, and #{locality.replace(' ', '')}).
                 SECTION 3 — AI IMAGE GENERATION PROMPT (In English: Photorealistic architectural interior photo, no people).
                 """
                 
